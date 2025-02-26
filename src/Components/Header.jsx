@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <nav className='navigation'>
         <div className='logo'><Link to="/" >FoodRecipe</Link></div>
-        <form onSubmit={fetchRecipe} className='form'>
+        {/* <form onSubmit={fetchRecipe} className='form'>
           <img src={searchIcon} onClick={fetchRecipe} alt="seacr-icon"  />
           <input
           type='text'
@@ -20,7 +20,7 @@ const Header = () => {
           className='search-input'
           placeholder='Search...'
           />
-        </form>
+        </form> */}
         <ul>
             <li>
               <Link to="/favourites" >Favourites</Link>
