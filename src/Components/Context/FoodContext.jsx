@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const FoodContextProvider = createContext()
@@ -12,9 +12,16 @@ const FoodContext = ({ children }) => {
   const [recipeList, setRecipeList] = useState([])
   const [error, setError] = useState(null)
   const [recipeIngredients, setRecipeIngredients] = useState({})
-  const [favourites, setFavourites] = useState([])
+  const [favourites, setFavourites] = useState(() => {
+    const faves = JSON.parse(localStorage.getItem('favourite-recipe')) ;
+    return (faves || []);
+  })
   const navigate = useNavigate()
   console.log(favourites)
+
+  useEffect(() => {
+    localStorage.setItem('favourite-recipe', JSON.stringify(favourites))
+  }, [favourites])
   
     const fetchRecipe = async (e) => {
         e.preventDefault()
